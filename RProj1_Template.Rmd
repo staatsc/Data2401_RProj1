@@ -1,6 +1,6 @@
 ---
 title: "R Project 1 - Hello R"
-author: "Your Name Goes Here"
+author: "Cassandra Staats"
 date: "9/16/2020"
 output: html_document
 ---
@@ -14,10 +14,9 @@ library(tidyverse)
 library(datasauRus)
 ```
 
-
 ### Exercise 1
 
-(Type your answer to Exercise 1 here. This exercise does not require any R code. **Remove notes like this in the final product that you turn in**)
+
 
 ### Exercise 2
 
