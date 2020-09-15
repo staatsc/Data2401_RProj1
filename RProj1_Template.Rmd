@@ -2,8 +2,13 @@
 title: "R Project 1 - Hello R"
 author: "Cassandra Staats"
 date: "9/16/2020"
-output: html_document
+output: 
+  html_document: 
+    fig_width: 5
+    highlight: pygments
+    theme: cerulean
 ---
+
 
 ### Load packages
 
@@ -12,10 +17,13 @@ library(tidyverse)
 library(datasauRus)
 ```
 
+
+
 ### Exercise 1
 
 Based on the help file, there are 1,846 rows and 3 columns in the datasaurus_dozen file. 
 The 3 variables included in the data frame are the dataset, x-values, and y-values.
+
 
 ```{r}
 datasaurus_dozen %>%
@@ -23,16 +31,19 @@ datasaurus_dozen %>%
   print(13)
 ```
 
+
+
 ### Exercise 2
 
 Plots the data in the dino dataset:
 
-```{r plot-dino, fig.height=3, fig.width=6}
+```{r plot-dino}
 dino_data <- datasaurus_dozen %>%
   filter(dataset == "dino")
 ggplot(data = dino_data, mapping = aes(x = x, y = y)) +
   geom_point()
 ```
+
 
 Calculate the correlation between `x` and `y` in this dataset:
 
@@ -41,8 +52,11 @@ dino_data %>%
   summarize(r = cor(x, y))
 ```
 
-### Exercise 3
 
+
+
+
+### Exercise 3
 
 Plots the data in the star dataset:
 
@@ -54,7 +68,7 @@ ggplot(data = star_data, mapping = aes(x = x, y = y)) +
 ```
 
 
-Evaluate the correlation coefficient between 'x' and 'y' for the star dataset:
+Evaluate the correlation coefficient between `x` and `y` for the star dataset:
 
 ```{r cor-star}
 star_data %>%
@@ -68,8 +82,11 @@ while the dino data set correlation coefficient is -0.06447185, which is just
 slightly smaller.
 
 
-### Exercise 4
 
+
+
+
+### Exercise 4
 
 Plots the data in the cirle dataset:
 
@@ -81,7 +98,7 @@ ggplot(data = circle_data, mapping = aes(x = x, y = y)) +
 ```
 
 
-Evaluate the correlation coefficient between 'x' and 'y' for the circle dataset:
+Evaluate the correlation coefficient between `x` and `y` for the circle dataset:
 
 ```{r cor-circle}
 circle_data %>%
@@ -96,6 +113,28 @@ slightly larger.
 
 
 
+
 ### Exercise 5
 
-(Add code and narrative as needed. To add R chunks either type out the backticks, curly braces, and the letter `r` or use the Insert chunk button above, with the green +C.)
+Plot all datasets at once:
+
+```{r fig.height=8, fig.width=8}
+ggplot(datasaurus_dozen, aes(x = x, y = y, color = dataset))+
+  geom_point()+
+  facet_wrap(~ dataset, ncol = 3) + # facet the dataset variable, in 3 cols
+  theme(legend.position = "none")
+```
+
+
+Calculate all of the datasets summary correlation coefficients:
+
+```{r}
+datasaurus_dozen %>%
+group_by(dataset) %>%
+summarize(r = cor(x, y)) %>%
+print(13)
+```
+
+
+
+
