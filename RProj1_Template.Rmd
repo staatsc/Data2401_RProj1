@@ -44,18 +44,18 @@ dino_data %>%
 ### Exercise 3
 
 
-Loads star package and then plots x and y for the star dataset:
+Plots the data in the star dataset:
 
 ```{r plot-star}
-library(stars)
 star_data <- datasaurus_dozen %>%
   filter(dataset == "star")
 ggplot(data = star_data, mapping = aes(x = x, y = y)) +
   geom_point()
 ```
 
-Evaluate the correlation coefficient between x and y for the star dataset:
- 
+
+Evaluate the correlation coefficient between 'x' and 'y' for the star dataset:
+
 ```{r cor-star}
 star_data %>%
   summarize(r = cor(x, y))
@@ -70,17 +70,31 @@ slightly smaller.
 
 ### Exercise 4
 
-(Add code and narrative as needed. Note that two R chunks are given but they are not labeled. Use the convention from above to name them appropriately.)
 
-```{r}
+Plots the data in the cirle dataset:
 
-
+```{r plot-circle}
+circle_data <- datasaurus_dozen %>%
+  filter(dataset == "circle")
+ggplot(data = circle_data, mapping = aes(x = x, y = y)) +
+  geom_point()
 ```
 
-```{r}
 
+Evaluate the correlation coefficient between 'x' and 'y' for the circle dataset:
 
+```{r cor-circle}
+circle_data %>%
+  summarize(r = cor(x, y))
 ```
+
+
+The circle dataset compares to the dino dataset by being smaller in size. However,
+they are very similar. The circle data set correlation coefficient is -0.06834336,
+while the dino data set correlation coefficient is -0.06447185, which is just
+slightly larger.
+
+
 
 ### Exercise 5
 
